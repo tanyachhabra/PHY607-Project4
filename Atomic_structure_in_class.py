@@ -102,6 +102,9 @@ class AtomicProperties():
         radius = (N**2) * 0.529 / Zeff
         return radius
 
+def plot_electronic_configuration(atom,oxidation_state):
+    config =ElectronicConfiguration(symbol=atom, oxidation_state=oxidation_state)
+    config.plot_initial_configuration()
 
 def plot_atomic_number_versus_radii(atoms, observed_radii, oxidation_state=0 ):
     """
@@ -123,8 +126,9 @@ def plot_atomic_number_versus_radii(atoms, observed_radii, oxidation_state=0 ):
 
 # Example Usage
 if __name__ == "__main__":
-    atoms = ["H", "Li", "Be", "B", "C", "N", "O", "F", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "K", "Ca"]
-    observed_radii =[0.53, 1.63, 1.09, 0.82, 0.65, 0.55, 0.47, 0.41, 2.17, 1.68, 1.37, 1.15, 1.00, 0.88, 0.78, 3.32, 2.56]
+    plot_electronic_configuration() # missing element and oxidation state
+    atoms = [] # Missing part: choose your own list of atoms
+    observed_radii =[] # Missing part: fill in the corresponding observed atomic radius from the given table
     radii, atomic_numbers = plot_atomic_number_versus_radii(atoms,observed_radii, 0)
     print("Radii:", radii)
     print("Atomic Numbers:", atomic_numbers)
