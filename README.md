@@ -30,12 +30,12 @@ The ElectronicConfiguration class allows you to:
 The AtomicProperties class provides methods to:
 
 - Calculate shielding constant (σ)
-- Compute effective nuclear charge (Z_eff)
+- Compute effective nuclear charge ($\text{Z}_{eff}$)
 - Estimate atomic radius
 
 ## In-class exercise
 
-1. Make a polar plot for any element with a stable oxidization state, for example: Fe2+, Fe3+, Mg2+, Ca2+, Na+, Al3+, etc
+1. Make a polar plot for any element with a stable oxidization state, for example: $\text{Fe}^{2+}$, $\text{Fe}^{3+}$, $\text{Mg}^{2+}$, $\text{Ca}^{2+}$, $\text{Na}^{+}$, $\text{Al}^{3+}$, etc
 
 2. Choose the list of elements from the table provided and put it in the atoms array in the format:
    ```python
