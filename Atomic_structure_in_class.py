@@ -57,47 +57,50 @@ class AtomicProperties():
         self.Z= Element(symbol).number
    
     
-    def sigma(self): # calculating the shielding coeffecient 
+    def sigma(self):
+        """
+        Calculate the shielding constant (sigma) based on the electron configuration.
+        """
         sigma = -0.35
         N, last_orbital, electrons = self.elec_structure[-1]
         for i in range(len(self.elec_structure) - 1, -1, -1):
             n, orbital, electrons = self.elec_structure[i]
+
             if last_orbital in ['s', 'p']:
-                if n==N:
-                    sigma+= electrons*0.35
-                if n ==N-1:
-                    sigma+= electrons*0.85
-                if n <= N-2:
-                    sigma+=electrons*1
-                if n>N:
+                if n == N:
+                    sigma += electrons * 0.35
+                if n == N - 1:
+                    sigma += electrons * 0.85
+                if n <= N - 2:
+                    sigma += electrons * 1
+                if n > N:
                     continue
             else:
-                if n==N and orbital==last_orbital:
-                    sigma+= 0.35*electrons
-                elif n>N:
+                if n == N and orbital == last_orbital:
+                    sigma += 0.35 * electrons
+                elif n > N:
                     continue
                 else:
-                    sigma +=1*electrons
-        print(f"Calculated Shielding Constant (sigma): {sigma}")
+                    sigma += 1 * electrons
+
         return sigma
-    
+
     def Z_eff(self):
-        sigma_value = self.sigma()  
-        Z = self.Z
-        Zeff = Z - sigma_value  
-        print(f"Effective Nuclear Charge (Z_eff): {Zeff}")
-        return Z, Zeff
-    
-    def Energy_func(self):
-        _, Zeff = self.Z_eff()
-        Rh= 13.6 #eV
+        """
+        Calculate the effective nuclear charge (Z_eff).
+        """
+        sigma_value = self.sigma()
+        Zeff = self.Z - sigma_value
+        return Zeff
+
+    def compute_radius(self):
+        """
+        Calculate the atomic radius based on the effective nuclear charge.
+        """
+        Zeff = self.Z_eff()
         N, _, _ = self.elec_structure[-1]
-        print(Zeff)
-        print(N)
-        Energy = - (Rh * Zeff**2)/N**2
-        radius = (N**2)* 0.529/(Zeff)
-        print("radius of atom" + str(radius))
-        return(Energy, radius)
+        radius = (N**2) * 0.529 / Zeff
+        return radius
 
 
 def plot_atomic_number_versus_radii(atoms, observed_radii, oxidation_state=0 ):
